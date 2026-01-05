@@ -11,6 +11,7 @@ sudo apt install -y \
 ```bash
 sudo apt update
 sudo apt install -y libxcb-cursor0
+sudo apt install -y python3.10-venv
 ```
 
 
@@ -33,7 +34,7 @@ sudo apt install -y \
 
 
 ```bash
-poetry run pyside6-rcc pathin.qrc -o pathout/views_rc.py
+poetry run pyside6-rcc jmodel_desktop/src/resources/views.qrc -o jmodel_desktop/src/resources/views_rc.py
 
 ```
 

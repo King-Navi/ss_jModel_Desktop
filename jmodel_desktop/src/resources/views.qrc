@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/views">
     <file alias="run_model_window.ui">../views/run_model_window.ui</file>
+    <file alias="video_inference_window.ui">../views/video_inference_window.ui</file>
   </qresource>
 </RCC>

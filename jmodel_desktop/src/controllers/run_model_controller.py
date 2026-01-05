@@ -1,5 +1,8 @@
-from PySide6.QtCore import QObject
+from PySide6.QtCore import QObject, Qt
 from PySide6.QtWidgets import QComboBox, QPushButton, QRadioButton, QTextEdit
+
+from ..utils.load_windows import load_ui
+from .video_inference_controller import VideoInferenceController
 
 from ..service.models import listar_modelos_desde_env
 from ..service.devices import list_v4l2_devices_linux
@@ -128,7 +131,36 @@ class RunModelController(QObject):
         print(f"Ultralytics clicked | mode={self._mode()} | model={self.combo_model.currentText()} | device={self.combo_device.currentText()}")
 
     def on_gstream_clicked(self):
-        print(f"GStream clicked | mode={self._mode()} | model={self.combo_model.currentText()} | device={self.combo_device.currentText()}")
+        model_path = self.combo_model.currentData()
+        device_path = self.combo_device.currentData()
+
+        if not model_path:
+            print("No model selected.")
+            return
+        if not device_path:
+            print("No device selected.")
+            return
+
+        child = load_ui(":/views/video_inference_window.ui")
+
+        # Ventana hija “dependiente” del padre (owned window)
+        child.setParent(self.window, Qt.Window)
+        child.setAttribute(Qt.WA_DeleteOnClose, True)
+
+        # Guarda referencias para que NO lo mate el GC
+        self._video_window = child
+        self._video_controller = VideoInferenceController(
+            child,
+            model_path=model_path,
+            device_path=device_path,
+            width=1280,
+            height=720,
+            fps=30,
+            parent=child,
+        )
+
+        child.show()
+        print(f"GStream clicked | model={self.combo_model.currentText()} | device={self.combo_device.currentText()}")
 
     def on_opencv_clicked(self):
         print(f"OpenCV clicked | mode={self._mode()} | model={self.combo_model.currentText()} | device={self.combo_device.currentText()}")

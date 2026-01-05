@@ -1,7 +1,8 @@
 .env
-venv
+.venv
 
 __pycache__/
 OLD
 
 models/
+error_pass.md

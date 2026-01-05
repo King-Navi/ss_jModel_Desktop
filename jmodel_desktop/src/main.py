@@ -16,7 +16,7 @@ from .controllers.run_model_controller import RunModelController
 def main():
     app = QApplication(sys.argv)
 
-    window = load_ui(":/views/../views/run_model_window.ui")
+    window = load_ui(":/views/run_model_window.ui")
 
     _controller = RunModelController(window)
 
