@@ -13,7 +13,7 @@ from PySide6.QtWidgets import (
     QFormLayout,
     QComboBox,
 )
-from .devices import list_v4l2_devices_linux
+from ...service.devices import list_v4l2_devices_linux
 from PySide6.QtMultimedia import QMediaDevices
 
 class CameraPage(QWidget):
