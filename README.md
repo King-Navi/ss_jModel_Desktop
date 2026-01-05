@@ -30,3 +30,13 @@ sudo apt install -y \
   libxcb-shape0
 
 ```
+
+
+```bash
+poetry run pyside6-rcc pathin.qrc -o pathout/views_rc.py
+
+```
+
+```bash
+poetry run pyside6-designer
+```

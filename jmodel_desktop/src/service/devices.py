@@ -10,7 +10,7 @@ def list_v4l2_devices_linux():
         return results
 
     for entry in sorted(base.iterdir()):
-        dev = entry.name  # video0, video1...
+        dev = entry.name
         name_file = entry / "name"
         label = name_file.read_text(errors="ignore").strip() if name_file.exists() else dev
         results.append((f"/dev/{dev}", label))

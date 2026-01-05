@@ -6,7 +6,7 @@ from PySide6.QtCore import Qt, QObject, QThread, Signal, Slot
 from PySide6.QtGui import QImage, QPixmap
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QHBoxLayout, QPushButton, QComboBox
 
-from .devices import list_v4l2_devices_linux
+from ...service.devices import list_v4l2_devices_linux
 
 
 class VideoWorker(QObject):

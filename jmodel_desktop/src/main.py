@@ -1,18 +1,28 @@
 import sys
+from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
+
+from .ui.theme import apply_theme, load_theme_name
+
 from PySide6.QtWidgets import QApplication
-from jmodel_desktop.src.ui.theme import apply_theme, load_theme_name
-from jmodel_desktop.src.ui.main_window import MainWindow
+from .resources import views_rc
+from .utils.load_windows import load_ui
+
+from .controllers.run_model_controller import RunModelController 
 
 
 def main():
     app = QApplication(sys.argv)
-    app.setApplicationName("jmodel_desktop")
-    app.setOrganizationName("King-Navi")
-    app.setStyle("Fusion")
 
-    apply_theme(app, load_theme_name())
+    window = load_ui(":/views/../views/run_model_window.ui")
 
-    window = MainWindow()
+    _controller = RunModelController(window)
+
     window.show()
+    sys.exit(app.exec())
 
-    raise SystemExit(app.exec())
+
+if __name__ == "__main__":
+    main()
